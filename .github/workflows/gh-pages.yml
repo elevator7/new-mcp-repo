@@ -1,12 +1,9 @@
-name: Deploy to GitHub Pages
+name: Deploy React App to GitHub Pages
 
 on:
   push:
     branches:
       - main
-
-permissions:
-  contents: write
 
 jobs:
   build-and-deploy:
@@ -23,16 +20,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build
-        run: npm run build
-        env:
-          NODE_ENV: production
-
-      - name: Add .nojekyll
-        run: echo "" > dist/.nojekyll
-
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+        run: npm run deploy
+        env:
+          CI: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
