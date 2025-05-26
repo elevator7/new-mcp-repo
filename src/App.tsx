@@ -1,5 +1,12 @@
 import React from 'react';
-import { Container, CssBaseline, ThemeProvider, createTheme } from '@mui/material';
+import { 
+  Container, 
+  CssBaseline, 
+  ThemeProvider, 
+  createTheme,
+  Box
+} from '@mui/material';
+import Header from './components/Header';
 import Hero from './components/Hero';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
@@ -38,6 +45,35 @@ const theme = createTheme({
         },
       },
     },
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          boxShadow: 'none',
+        },
+      },
+    },
+    MuiContainer: {
+      styleOverrides: {
+        root: {
+          '@media (min-width:1200px)': {
+            paddingLeft: '2rem',
+            paddingRight: '2rem',
+          },
+        },
+      },
+    },
+    MuiCssBaseline: {
+      styleOverrides: {
+        html: {
+          scrollBehavior: 'smooth',
+          scrollPaddingTop: '80px', // Account for fixed header
+        },
+        body: {
+          WebkitFontSmoothing: 'antialiased',
+          MozOsxFontSmoothing: 'grayscale',
+        },
+      },
+    },
   },
 });
 
@@ -45,13 +81,32 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Container maxWidth="lg">
-        <Hero />
-        <Skills />
-        <Projects />
-        <Contact />
+      <Box sx={{ 
+        minHeight: '100vh', 
+        display: 'flex', 
+        flexDirection: 'column',
+        backgroundImage: 'linear-gradient(to bottom, #0a0a0a, #121212)',
+        backgroundAttachment: 'fixed'
+      }}>
+        <Header />
+        <Box component="main" sx={{ flexGrow: 1 }}>
+          <Box id="home">
+            <Hero />
+          </Box>
+          <Container maxWidth="lg">
+            <Box id="skills">
+              <Skills />
+            </Box>
+            <Box id="projects">
+              <Projects />
+            </Box>
+            <Box id="contact">
+              <Contact />
+            </Box>
+          </Container>
+        </Box>
         <Footer />
-      </Container>
+      </Box>
     </ThemeProvider>
   );
 };
