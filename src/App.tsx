@@ -1,21 +1,11 @@
-import { Box, Container, Typography } from '@mui/material';
-import Hero from './components/Hero';
-import Projects from './components/Projects';
-import Skills from './components/Skills';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
+import React from 'react';
 
 function App() {
   return (
-    <Box>
-      <Hero />
-      <Container maxWidth="lg">
-        <Projects />
-        <Skills />
-        <Contact />
-      </Container>
-      <Footer />
-    </Box>
+    <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+      <h1>Vite + React + GitHub Pages</h1>
+      <p>Your deployment is working!</p>
+    </div>
   );
 }
 
